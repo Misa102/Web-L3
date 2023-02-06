@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenue !</title>
+    <style>
+        caption { border: red solid 1px; }
+        table { border: black solid 1px; }
+        td { border: black solid 1px; }
+    </style>
+</head>
+<body>
+<h1>Bienvenue {{ prenom }}</h1>
+
+<table>
+    <caption>Mes jeux préférés sont&nbsp;:</caption>
+    {% set i = 1 %}
+    {% for jeu in jeux %}
+        <tr>
+            <td>{{ i }}</td><td>{{ jeu }}</td>
+        </tr>
+        {% set i = i+1 %}
+    {% else %}                        {# utilisé si aucune itération n'est effectuée #}
+        <tr><td>je ne préfère aucun jeu&nbsp;!</td></tr>
+    {% endfor %}
+</table>
+
+{# code équivalent en utilisant loop #}
+<table>
+    <caption>Mes jeux préférés sont&nbsp;:</caption>
+    {% for jeu in jeux %}
+        <tr>
+            <td>{{ loop.index }}</td><td>{{ jeu }}</td>
+        </tr>
+    {% else %}                        {# utilisé si aucune itération n'est effectuée #}
+        <tr><td>je ne préfère aucun jeu&nbsp;!</td></tr>
+    {% endfor %}
+</table>
+</body>
+</html>
