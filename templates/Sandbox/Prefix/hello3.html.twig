@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Prefix</title>
+</head>
+<body>
+<h1>(Prefix) Bienvenue {{ prenom }}</h1>
+<p>
+    Mes jeux préférés sont&nbsp;:
+    {% set i = 1 %}
+    {% for jeu in jeux %}
+        {{ i }}:{{ jeu }}             {# i peut être avantageusement remplacé par loop.index #}
+        {% set i = i+1 %}
+    {% else %}                        {# utilisé si aucune itération n'est effectuée #}
+        je ne préfère aucun jeu&nbsp;!
+    {% endfor %}
+</p>
+</body>
+</html>
+

@@ -1,0 +1,25 @@
+{# vue commune auw action test1, test2, test3 et test4 #}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        caption { border: red solid 1px; }
+        table { border: black solid 1px; }
+        th, td { border: black solid 1px; padding: 2px 10px 2px 10px;}
+        th { text-align: right; }
+    </style>
+</head>
+<body>
+<h1>Route::{{ title }}</h1>
+<table>
+    <tr><th>year</th>    <td>{{ year }}</td></tr>
+    <tr><th>month</th>   <td>{{ month }}</td></tr>
+    <tr><th>filename</th><td>{{ filename }}</td></tr>
+    <tr><th>ext</th>     <td>{{ ext }}</td></tr>
+</table>
+{{ dump(year, month, filename, ext) }}    {# sont-ce des chaînes ? #}
+</body>
+</html>
+
