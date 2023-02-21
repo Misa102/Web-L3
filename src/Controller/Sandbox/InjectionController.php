@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 #[Route('/sandbox/injection', name: 'sandbox_injection')]
 class InjectionController extends AbstractController
@@ -33,6 +34,23 @@ class InjectionController extends AbstractController
         dump($session->all());
         dump($_SESSION);
         return new Response('<body>Injection::un</body>');
+    }
+
+    //7.1 creation des messages flash
+    #[Route('/create-flash', name: '_create_flash')]
+    public function createFlashAction(Session $session): Response
+    {
+        // par exemple cette action supprime une entrée dans la base de données
+        $session->getFlashBag()->add('info', 'L\'enregistrement a été supprimé');
+        $this->addFlash('info', 'L\'enregistrement a été supprimé (bis repetita)');
+        return $this->redirectToRoute('sandbox_injection_display_flash');
+    }
+
+    //7.2 affichage des messages flash
+    #[Route('/display-flash', name: '_display_flash')]
+    public function displayFlashAction(): Response
+    {
+        return $this->render('Sandbox/Injection/displayFlash.html.twig');
     }
 
 }
