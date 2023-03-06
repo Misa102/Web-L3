@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controller\Sandbox;
+namespace App\Entity\Sandbox;
 
+use App\Controller\Sandbox\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

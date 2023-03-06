@@ -1,10 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends  'Sandbox/Layouts/layout3.html.twig' %}
+
+{% block title %}{{ parent() }} : vue 6{% endblock %}
+
+{% block titre_principal %}Vue 6 : exercices Twig{% endblock %}
+
+{% block vue %}
+    <h2>Qui suis-je ?</h2>
+    <p>
+        Je suis {{ prenom }} et je suis joignable à <em>{{ mail }}</em>
+    </p>
+
+    <h1>exercice 5.2</h1>
+    {# 5.2.1 noms longs et courts des mentions #}
+    <h2>Noms des mentions</h2>
+    <ul>
+        {# {% for nomCourt, mention in offre['mentions'] %} #}           {# syntaxe orientée "tableau" #}
+        {% for nomCourt, mention in offre.mentions %}                    {# syntaxe orientée "objet" #}
+            {# <li>{{ mention['nom']|upper }} ({{ nomCourt }})</li> #}
+            <li>{{ mention.nom|upper }} ({{ nomCourt }})</li>
+        {% endfor %}
+    </ul>
+
+    {# 5.2.2 noms et volumes horaires des UEs #}
+    <h2>Noms et volumes des UEs</h2>
+    <ul>
+        {% for ue in offre.ues %}
+            {# <li>{{ loop.index }}. {{ ue.nom }} : {{ ue.volume }}</li> #}          {# manière "normale" #}
+            <li>{{ loop.index }}. {{ ue.nom ~ ' : ' ~ ue.volume }}</li>              {# manière avec concaténation #}
+        {% endfor %}
+    </ul>
+
+
+
+
+    {# 5.2.3 tableau complet #}
+    <h2>Tableau complet</h2>
+    <ul>
+        {#  partie 1 : les mentions #}
+        <li>Mentions
+            <ul>
+                {% for nomCourt, mention in offre.mentions %}
+                    {# traitement d'une mention #}
+                    <li>{{ nomCourt }}
+                        <ul>
+                            <li>nom : {{ mention.nom }}</li>
+                            <li>parcours :
+                                <ul>
+                                    {% for parcour in mention.parcours %}
+                                        <li>parcours {{ loop.index }} : {{ parcour }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            <li>responsable : {{ mention.responsable }}</li>
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+        {#  partie 2 : les UEs #}
+        <li>UEs
+            <ul>
+                {% for ue in offre.ues %}
+                    {# traitement d'une UE #}
+                    <li>UE {{ loop.index0 }}
+                        <ul>
+                            <li>nom : {{ ue.nom }}</li>
+                            <li>volume : {{ ue.volume }} heure(s)</li>
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+
+    {# nombre de mentions #}
+    <h2>Nombre de mentions</h2>
+    <p>Il y a {{ offre.mentions|length }} mention{{ offre.mentions|length > 1 ? 's' : '' }}</p>
+
+    {# 5.2.5 Formatage de texte, format fait un affichage comme printf en C #}
+    <h2>Filtre <code>format</code></h2>
+    {% set ville = 'Poitiers' %}
+    <p>{{ 'Il y a %d habitants à %s eb 1990' |format(78894, ville) }}</p>
+
+    {# 5.2.6 UEs sous conditions #}
+    <h2>UEs dont le volume horaire est &ge; 30</h2>
+    <ul>
+        {% for ue in offre.ues %}
+            {% if ue.volume >= 30 %}
+                <li>{{ ue.nom }} ({{ ue.volume }} heure(s))</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    {# 5.2.7 variable app #}
+    <h2>Variable globale <code>app</code></h2>
+    <p>
+        <code>app.session</code> : {{ dump(app.session) }}
+        <code>app.request</code> : {{ dump(app.request) }}
+        <code>app.environment</code> : {{ dump(app.environment) }}
+        <code>app.debug</code> : {{ dump(app.debug) }}
+        <code>app.user</code> : {{ dump(app.user) }}
+    </p>
+
+
+    <h2>Dump du tableau des formations</h2>
+    <p>Tips : Ctrl-clic sur les petites flèches</p>
+    {{ dump(offre) }}
+    <p>
+        Tips : lorsqu'on manipule des structures complexes, il peut être utile d'avoir
+        un <code>dump</code> sous les yeux pour visualiser l'organisation des données.
+    </p>
+
+
+{% endblock %}

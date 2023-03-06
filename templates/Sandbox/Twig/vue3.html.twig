@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends  'Sandbox/Layouts/layout1.html.twig' %}
+
+{% block title %}{{ parent() }} : vue 3{% endblock %}
+
+{# un commentaire twig est autorisé, mais pas du code #}
+
+{% block titre_principal %}Titre principal de la vue 3{% endblock %}
+
+{% block vue %}
+    <p>
+        Le paragraphe du template <code>vue3.html.twig</code>
+    </p>
+{% endblock %}

@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends  'Sandbox/Layouts/layout2.html.twig' %}
+{% block title %}{{ parent() }} : vue 4{% endblock %}
+
+{% block titre_principal %}Titre principal de la vue 4{% endblock %}
+
+{% block vue %}
+    <p>
+        Le paragraphe du template <code>vue4.html.twig</code>
+    </p>
+{% endblock %}

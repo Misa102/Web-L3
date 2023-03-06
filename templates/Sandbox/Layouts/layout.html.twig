@@ -1,10 +1,12 @@
+{# template racine (niveau 1) générique #}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+    <meta charset="UTF-8">
+    <title>{% blocktitle %}{% endblock %}</title>
+    {% block css %}{% endblock%}
+    {% block javascript %}{% endblock %}</head>
 <body>
-$END$
+    {% block body %}{% endblock %}
 </body>
 </html>

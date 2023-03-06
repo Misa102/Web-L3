@@ -1,10 +1,18 @@
+{# controller racine (niveau 1) pour TwigController : version 2 #}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>{% block title %}Sandbox{% endblock %}</title>
 </head>
 <body>
-$END$
+<div id="vue">
+    <h1>{% block titre_principal %}{% endblock %}</h1>
+    {% block vue %}{% endblock %}
+</div>
+
+<div id="footer">
+    {% include 'Sandbox/Layouts/footer.html.twig' %}
+</div>
 </body>
 </html>

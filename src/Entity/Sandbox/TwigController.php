@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Sandbox;
+namespace App\Entity\Sandbox;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
