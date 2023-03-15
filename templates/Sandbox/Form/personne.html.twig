@@ -1,0 +1,14 @@
+{% extends  'Sandbox/Layouts/layout4.html.twig' %}
+
+{% block title %}{{ parent() }} : form{% endblock %}
+
+{% block titre_principal %}Vue "personne" : exercices formulaires{% endblock %}
+
+{% block vue %}
+    <h2>Formulaire sur une classe non entité</h2>
+    {{ form(myform) }}
+
+    <h2>dump</h2>
+    {{ dump(personne) }}
+    {{ dump(myform) }}
+{% endblock %}

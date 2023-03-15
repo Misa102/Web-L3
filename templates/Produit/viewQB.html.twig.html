@@ -1,0 +1,46 @@
+{% extends 'Layouts/layout_vente.html.twig' %}
+
+{% block title %}{{ parent() }} : produits{% endblock %}
+
+{% block titre_principal %}{{ parent() }} : détail du produit {{ produit.id }} {{ method }} QueryBuilder{% endblock %}
+
+{% block vue %}
+{# normalement devrait être dans un fichier css #}
+<style>
+    caption { border: red solid 1px; }
+    table { border: black solid 1px; }
+    th, td { border: black solid 1px; padding: 2px 10px 2px 10px;}
+    th { text-align: left; }
+</style>
+
+<h2>Détail du produit</h2>
+{# le produit existe : le cas d'erreur a été traité dans le contrôleur #}
+<ul>
+    <li>id : {{ produit.id }}</li>
+    <li>dénomination : {{ produit.denomination }}</li>
+    <li>code barre : {{ produit.code }}</li>
+    <li>date de création : {{ produit.dateCreation|date }}</li>
+    <li>actif : {{ produit.actif ? 'oui' : 'non' }}</li>
+    <li>descriptif : {{ produit.descriptif }}</li>
+</ul>
+
+<h2>Magasins</h2>
+{% if produit.produitMagasins|length == 0 %}
+<p>aucun magasin.</p>
+{% else %}
+<table>
+    <tr><th>id</th><th>nom</th><th>quantité</th><th>prix unitaire</th></tr>
+    {% for produitMagasin in produit.produitMagasins %}
+    <tr>
+        <td>{{ produitMagasin.magasin.id }}</td>         {# table magasins #}
+        <td>{{ produitMagasin.magasin.nom }}</td>        {# table magasins #}
+        <td>{{ produitMagasin.quantite }}</td>           {# table produits_magasins #}
+        <td>{{ produitMagasin.prixUnitaire }}</td>       {# table produits_magasins #}
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+<h2>dump de vérification</h2>
+{{ dump(produit) }}
+{% endblock %}

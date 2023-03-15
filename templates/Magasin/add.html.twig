@@ -1,0 +1,21 @@
+{% extends 'Layouts/layout_vente.html.twig' %}
+
+{% block title %}{{ parent() }} : magasins{% endblock %}
+
+{% block titre_principal %}{{ parent() }} : ajout d'un magasin{% endblock %}
+
+{% block vue %}
+    {{ form_start(myform) }}
+
+    {{ form_errors(myform) }}
+
+    <div>
+        {{ form_label(myform.nom) }}
+        {{ form_errors(myform.nom) }}
+        {{ form_widget(myform.nom) }}
+    </div>
+
+    {{ form_rest(myform) }}
+
+    {{ form_end(myform) }}
+{% endblock %}

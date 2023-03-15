@@ -1,0 +1,29 @@
+{% extends  'Sandbox/Layouts/layout4.html.twig' %}
+
+{% block title %}{{ parent() }} : form{% endblock %}
+
+{% block titre_principal %}Vue "film_editbis" : exercices formulaires{% endblock %}
+
+{% block vue %}
+    <h2>Édition d'un film</h2>
+
+    {{ form_start(myform) }}
+
+    {{ form_errors(myform) }}
+
+    {{ form_row(myform.titre) }}
+
+    <div>
+        {{ form_label(myform.annee) }}
+        {{ form_errors(myform.annee) }}
+        {{ form_widget(myform.annee) }}
+    </div>
+
+    {{ form_rest(myform) }}
+
+    {{ form_end(myform) }}
+
+
+    <h2>dump</h2>
+    {{ dump(myform) }}
+{% endblock %}

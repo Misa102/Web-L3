@@ -1,0 +1,28 @@
+{# contrôleur racine (niveau 1) pour TwigController : version 3 #}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Sandbox{% endblock %}</title>
+</head>
+<body>
+
+<div id="flash">
+    {% include 'Sandbox/Layouts/flash.html.twig' %}
+</div>
+
+<div id="palmares">
+    {{ render(controller('App\\Controller\\TwigController::palmaresAction',{n:3})) }}
+    {# inclure ici l'appel à TwigController::palmaresAction avec la paramètre 3 #}
+</div>
+
+<div id="vue">
+    <h1>{% block titre_principal %}{% endblock %}</h1>
+    {% block vue %}{% endblock %}
+</div>
+
+<div id="footer">
+    {% include 'Sandbox/Layouts/footer.html.twig' %}
+</div>
+</body>
+</html>

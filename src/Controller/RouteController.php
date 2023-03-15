@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\Sandbox;
+namespace App\Controller;
 
 use App\Controller\Sandbox\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

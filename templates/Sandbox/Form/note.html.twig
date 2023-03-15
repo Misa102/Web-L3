@@ -1,0 +1,13 @@
+{% extends  'Sandbox/Layouts/layout4.html.twig' %}
+
+{% block title %}{{ parent() }} : form{% endblock %}
+
+{% block titre_principal %}Vue "note" : exercices formulaires{% endblock %}
+
+{% block vue %}
+    <h2>Formulaire avec liste personnalisée</h2>
+    {{ form(myform) }}
+
+    <h2>dump</h2>
+    {{ dump(myform) }}
+{% endblock %}

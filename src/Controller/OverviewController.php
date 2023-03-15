@@ -1,45 +1,46 @@
 <?php
 
-namespace App\Entity\Sandbox;
+namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/sandbox/prefix', name: 'sandbox_prefix')]
-class PrefixController extends AbstractController
+class OverviewController extends AbstractController
 {
-    #[Route('', name: '')]
+    #[Route('/sandbox/overview', name: 'sandbox_overview_hello1')]
     public function indexAction(): Response
     {
-        return new Response('<body>(Prefix) Hello World!</body>');
+        return new Response('<body>Hello World!</body>');
     }
 
-    #[Route('/hello2', name: '_hello2')]
+    // 6.2 création d'une seconde action
+    #[Route('/sandbox/overview/hello2', name: 'sandbox_overview_hello2')]
     public function hello2Action(): Response
     {
-        return $this->render('Sandbox/Prefix/hello2.html.twig');
+        return $this -> render('Sandbox/Overview/hello2.html.twig');
     }
 
-    #[Route('/hello3', name: '_hello3')]
+    // 6.6 un peu de Twig
+    #[Route('/sandbox/overview/hello3', name: 'sandbox_overview_hello3')]
     public function hello3Action(): Response
     {
         $args = array(
             'prenom' => 'Gilles',
             'jeux' => ['A Plague Tale : Innocence', 'WoW', "Mass Effect", 'Life is Strange'],
         );
-        return $this->render('Sandbox/Prefix/hello3.html.twig', $args);
+        return $this->render('Sandbox/Overview/hello3.html.twig', $args);
     }
 
-    #[Route('/hello4', name: '_hello4')]
+    #[Route('/sandbox/overview/hello4', name: 'sandbox_overview_hello4')]
     public function hello4Action(): Response
     {
         $args = array(
             'prenom' => 'Gilles',
             'jeux' => ['A Plague Tale : Innocence', 'WoW', "Mass Effect", 'Life is Strange'],
         );
-        return $this->render('Sandbox/Prefix/hello4.html.twig', $args);
+        return $this->render('Sandbox/Overview/hello4.html.twig', $args);
     }
+
+
 }
-
-

@@ -1,0 +1,95 @@
+{% extends 'Layouts/layout_vente.html.twig' %}
+
+{% block title %}{{ parent() }} : produits{% endblock %}
+
+{% block titre_principal %}{{ parent() }} : détail du produit {{ produit.id }}{% endblock %}
+
+{% block vue %}
+{# normalement devrait être dans un fichier css #}
+<style>
+    caption { border: red solid 1px; }
+    table { border: black solid 1px; }
+    th, td { border: black solid 1px; padding: 2px 10px 2px 10px;}
+    th { text-align: left; }
+</style>
+
+<p><a href="{{ path('produit_list') }}">vers la liste des produits</a></p>
+
+<h2>Détail du produit</h2>
+{# le produit existe : le cas d'erreur a été traité dans le contrôleur #}
+<ul>
+    <li>id : {{ produit.id }}</li>
+    <li>dénomination : {{ produit.denomination }}</li>
+    <li>code barre : {{ produit.code }}</li>
+    <li>date de création : {{ produit.dateCreation|date }}</li>
+    <li>actif : {{ produit.actif ? 'oui' : 'non' }}</li>
+    <li>descriptif : {{ produit.descriptif }}</li>
+</ul>
+
+<h2>Manuel</h2>
+{% if produit.manuel is null %}
+<p>aucun manuel.</p>
+{% else %}
+<ul>
+    <li>web : <a href="{{ produit.manuel.url }}">vers le site</a> </li>
+    <li>sommaire : {{ produit.manuel.sommaire is null ? 'pas de sommaire' : produit.manuel.sommaire }}</li>
+</ul>
+{% endif %}
+
+<h2>Images</h2>
+{% if produit.images|length == 0 %}
+<p>aucune image.</p>
+{% else %}
+<table>
+    <tr><th>id</th><th>url</th><th>url_mini</th><th>alt</th></tr>
+    {% for image in produit.images %}
+    <tr>
+        <td>{{ image.id }}</td>
+        <td>{{ image.url }} : <img src="{{ image.url }}" alt="{{ image.alt }}" /></td>
+        {% if image.urlMini is not null %}
+        <td>{{ image.urlMini }} : <img src="{{ image.urlMini }}" alt="{{ image.alt }}" /></td>
+        {% else %}
+        <td>pas de miniature</td>
+        {% endif %}
+        <td>{{ image.alt }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+<h2>Pays</h2>
+{% if produit.payss|length == 0 %}
+<p>aucun pays.</p>
+{% else %}
+<table>
+    <tr><th>id</th><th>nom</th><th>code</th></tr>
+    {% for pays in produit.payss %}
+    <tr>
+        <td>{{ pays.id }}</td>
+        <td>{{ pays.nom }}</td>
+        <td>{{ pays.code is null ? 'pas de code' : pays.code }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+<h2>Magasins</h2>
+{% if produit.produitMagasins|length == 0 %}
+<p>aucun magasin.</p>
+{% else %}
+<table>
+    <tr><th>id</th><th>nom</th><th>quantité</th><th>prix unitaire</th></tr>
+    {% for produitMagasin in produit.produitMagasins %}
+    <tr>
+        <td>{{ produitMagasin.magasin.id }}</td>         {# table magasins #}
+        <td>{{ produitMagasin.magasin.nom }}</td>        {# table magasins #}
+        <td>{{ produitMagasin.quantite }}</td>           {# table produits_magasins #}
+        <td>{{ produitMagasin.prixUnitaire }}</td>       {# table produits_magasins #}
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+<h2>dump de vérification</h2>
+{{ dump(produit) }}
+{% endblock %}

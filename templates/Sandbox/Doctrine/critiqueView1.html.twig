@@ -1,0 +1,30 @@
+{% extends  'Sandbox/Layouts/layout4.html.twig' %}
+
+{% block title %}{{ parent() }} : doctrine{% endblock %}
+
+{% block titre_principal %}Vue "critiqueView1" : exercices Doctrine{% endblock %}
+
+{% block vue %}
+    <p><a href="{{ path('sandbox_doctrine_list') }}">Retour à la liste des films</a> </p>
+
+    <h2>Détail du film {{ film.id }}</h2>
+    <ul>
+        <li>id : {{ film.id }}</li>
+        <li>titre : {{ film.titre }}</li>
+        <li>année : {{ film.annee }}</li>
+        <li>en stock : {{ film.enstock ? 'oui' : 'non' }}</li>
+        <li>prix : {{ film.prix }} euro(s)</li>
+        <li>quantité : {{ film.quantite is null ? 'non renseigné' : film.quantite }}</li>
+    </ul>
+
+    <h2>Critiques</h2>
+    <ul>
+        {% for critique in critiques %}
+            <li>{{ critique.note }} : {{ critique.avis }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>dump</h2>
+    {{ dump(film) }}
+    {{ dump(critiques) }}
+{% endblock %}
